@@ -1,0 +1,145 @@
+= **User Guide**
+:icons: font
+:toc:
+
+== Introduction
+
+Patient Dashboard is a dashboard built to make raw hospital data more readable.The dashboard
+reads in clinical time-series data and produces various visualisation graphs.
+
+There are number of issues with analysing clinical time-series data.Firstly, these data are often
+large in quantity and rather disorganised.This causes a big cut in productivity and loss
+in efficiency.Due to it's complex nature, it is difficult to find useful information.Rendering the
+data "useless" or a chore to handle.
+
+Given the above problems, the patient dashboard hopes to minimise the time spent on finding useful
+data.This extra time can translate to data analysis or breakthroughs in clinical research.
+
+The dashboard is written in Python 3. Plotly and Dash tools were used to create graphs and web
+application.
+
+The dashboard has 4 main features.These features help in data analysis and to make sense of the
+raw data.
+
+1. Filter based on time range
+2. Multiple graph output
+3. Frequency table for categorical variables (only limited to true / false data)
+4. Box-plots for continuous variables
+
+== Starting up the dashboard
+
+To start the dashboard, key the following command inside terminal and hit enter:
+
+[source]
+----
+python dashboard.py [metadata txt file] [data csv file]
+----
+
+If this is your first time using the dashboard, please use the sample files: `metadata.txt` and
+`sample.csv` located in the root directory of `/patient-dashboard`
+
+Next, you will be greeted with this message:
+
+image::../images/terminal-message.png[]
+
+The above shows that you've successfully launched the dashboard. As instructed, please go to
+http://127.0.0.1:8050/ to open the dashboard in your web browser.
+
+If you are unable to view the message, this means that your files are not in the correct format or the
+wrong command was entered. If you are unable to troubleshoot the 'traceback' errors, please proceed to
+<<fileformat.adoc#_acceptable_csv_file_format,fileformat.adoc>>
+to understand the acceptable file format for the dashboard.
+
+IMPORTANT: The current version is unable to start if there is no categorical data. Please use our
+dummyCat.py to generate a column of categorical dummy data.
+
+TIP: Use our fileChecker.py if your files are in the correct format.
+
+== Using the dashboard
+The application is a one page scrollable dashboard. All the functionality are found in that one page.
+When you first open the app, you will be greeted with this page:
+
+image::../images/dashboard-main.png[]
+
+In this section, we will demonstrate how to the features respectively.
+
+=== Graph functions
+
+The graph function serves as the main part of the dashboard. Over here, you are able to visualise your
+data into 1 or multiple graphs.
+
+There are two types of graphs available.
+
+1. Line graph (for continuous / time-series variables)
+2. Bar Graph (for categorical / nominal variables)
+
+The type of graph output is controlled according the description found in your `metadata.txt` file. For more
+information on metadata and how it affects your graphs,
+please go to <<fileformat.adoc#_acceptable_csv_file_format,fileformat.adoc>>.
+
+==== 1 graph output
+
+image::../images/1graph.png[]
+
+To view the graph for 1 variable, these are the following steps:
+
+1. Click anywhere in the box to view the dropdown menu. Next, select the variable of choice.
+2. After selection, click the submit button to view the graph.
+
+==== Multiple variables to graph output
+
+image::../images/multiplegraph.png[]
+
+To view the graph for 2 or more variables, these are the following steps:
+
+1. After selecting 1 variable as shown in '1 graph output', choose another variable by clicking the
+dropdown menu again.
+2. Next, click the submit button to view the selected variables into 1 graph output.
+
+==== Selecting by date
+
+image::../images/select-date.png[]
+
+To view a portion of the graph by selecting dates, these are the following steps:
+
+1. After selecting variables, click on the left portion of the box to select the start date.
+2. Next, click on the right portion of the box to select the end date.
+3. Lastly, click the submit button to view the graph.
+
+===== Using the datepicker
+
+There are multiple parts in the datepicker.
+
+a1. The two arrows allow you to select the month. The left arrow goes back a month while, the right arrow
+goes forward a month.
+
+a2. Below the 2 arrows, is the calendar portion. This is used to select the date.
+
+TIP: Want to jump a year?
+To get the selected date at a much faster pace, you can key in your date in the box
+(marked by arrows 1 and 2)!
+
+=== Frequency Table
+
+The frequency table shows the statistics for categorical variables. 'Dummy' will be indicated if your
+categorical data was created by our script.
+
+Otherwise, the average, maximum and minimum value for each categorical variable will be shown.
+
+Below is a sample of the frequency table:
+
+image::../images/frequency-table.png[]
+
+
+=== Box-plot
+
+For continuous variables, a box-plot will be shown for every variable. The 'Boxplots' button
+is used to output the box-plots in the back-end. Currently, there is no functional use for the button in
+this version.
+
+Below is a sample of the box-plots:
+
+image::../images/boxplots.png[]
+
+
+
